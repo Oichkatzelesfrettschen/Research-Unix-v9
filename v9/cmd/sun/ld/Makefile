@@ -1,8 +1,10 @@
 #
 # @(#)Makefile	1.1 (Sun) 2/3/86 16:23:29
 #
-CC	= newcc
-CFLAGS  = -O -Dsun3
+# Compiler command used for the loader
+CC ?= cc
+# Flags passed to the compiler
+CFLAGS ?= -O2 -Dsun3
 OBJS    = ld.o incl.o
 PROGRAM = ld
 

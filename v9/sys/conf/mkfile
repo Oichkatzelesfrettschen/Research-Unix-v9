@@ -1,9 +1,12 @@
 #
 # Makefile for Research V9.
 #
-C2=	/lib/c2
-CC=	cc -m68020
-AS=	as -m68020
+# Compiler optimizer
+C2=     /lib/c2
+# Compiler command for kernel build
+CC ?= cc
+# Assembler command for kernel build
+AS ?= as
 LD=	ld
 NPROC=	2
 
@@ -32,7 +35,7 @@ ${FOBJS}: /lib/libc.a
 	ar x /lib/libc.a ${FOBJS}
 
 stab.o: ../sys/stab.c
-	cc -I. ${COPTS} -g -c ../sys/stab.c
+${CC} -I. ${COPTS} -g -c ../sys/stab.c
 
 assym.s: ../h/param.h ../h/buf.h ../h/vmmeter.h ../h/vmparam.h \
 	../h/user.h ../h/cmap.h ../h/map.h ../h/proc.h \
@@ -40,7 +43,7 @@ assym.s: ../h/param.h ../h/buf.h ../h/vmmeter.h ../h/vmparam.h \
 	../machine/psl.h ../machine/mmu.h ../machine/cpu.h \
 	../machine/zscom.h ../machine/scb.h ../conf/genassym.c \
 	../h/dir.h
-	cc -I. ${COPTS} ../conf/genassym.c; ./a.out >assym.s; \
+${CC} -I. ${COPTS} ../conf/genassym.c; ./a.out >assym.s; \
 	rm -f a.out
 
 ../h/param.h: ../machine/param.h ../h/signal.h ../h/types.h

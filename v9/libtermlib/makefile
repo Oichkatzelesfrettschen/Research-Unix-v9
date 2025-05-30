@@ -1,4 +1,5 @@
-CC=	newcc
+# Compiler command for termlib
+CC ?= cc
 CFLAGS=	-DCM_N -DCM_GT -DCM_B -DCM_D
 
 termcap.a: termcap.o tgoto.o tputs.o

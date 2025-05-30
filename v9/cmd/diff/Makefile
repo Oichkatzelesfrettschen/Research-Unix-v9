@@ -1,4 +1,5 @@
-CC=	newcc
+# Compiler command for diff
+CC ?= cc
 DIFF=	/bin/diff
 DIFFH=	/usr/lib/diffh
 PR=	/bin/pr

@@ -1,4 +1,5 @@
-CC	=	newcc
+# Compiler command for cfront
+CC ?= cc
 CFLAGS=
 PATCH=
 OFILES	=	alloc..o dcl..o dcl2..o dcl3..o del..o error..o expand..o expr..o expr2..o \
