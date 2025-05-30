@@ -1,4 +1,9 @@
 #include "../h/param.h"
+/*
+ * STREAMS based tty line discipline.  Handles canonical
+ * processing and interaction between the terminal driver
+ * and user level streams modules.
+ */
 #include "../h/stream.h"
 #include "../h/ttyio.h"
 #include "../h/ttyld.h"
@@ -9,8 +14,9 @@ extern	char	partab[];
 
 #define	CANBSIZ	256		/* size of largest input line */
 
-struct	ttyld	tty[NTTY];
+struct  ttyld   tty[NTTY];
 
+/* Character case mapping table for LCASE mode */
 char	maptab[] = {
 	000,000,000,000,000,000,000,000,
 	000,000,000,000,000,000,000,000,
