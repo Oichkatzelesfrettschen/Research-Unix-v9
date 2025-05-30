@@ -4,19 +4,28 @@
 #include "../h/conf.h"
 #include "sparam.h"
 
+/*
+ * STREAMS memory and queue management.
+ *
+ * This module provides the basic allocation routines for STREAMS
+ * blocks and queues along with the scheduler that runs queue
+ * service procedures.
+ */
+
 #define	M_HIPRI	127			/* for use of putbq */
 
 #ifndef	NBLKBIG
 #define	NBLKBIG	0
 #endif
 #define	NBLOCK (NBLKBIG+NBLK64+NBLK16+NBLK4)
-struct	block cblock[NBLOCK]; 		/* allocation of blocks */
-u_char	blkdata[1024*NBLKBIG+64*NBLK64+NBLK16*16+NBLK4*4];
-long	blkubad;			/* unibus address of blocks */
-struct	queue queue[NQUEUE];		/* allocation of queues */
-struct	queue *qhead;			/* head of queues to run */
-struct	queue *qtail;			/* last queue */
-struct	block *qfreelist[4];		/* allocation of freelist heads */
+/* Pools for STREAMS buffers and queue headers */
+struct  block cblock[NBLOCK];           /* buffer pool */
+u_char  blkdata[1024*NBLKBIG+64*NBLK64+NBLK16*16+NBLK4*4];
+long    blkubad;                        /* Unibus address of blocks */
+struct  queue queue[NQUEUE];            /* queue headers */
+struct  queue *qhead;                   /* run list head */
+struct  queue *qtail;                   /* run list tail */
+struct  block *qfreelist[4];            /* free lists by size */
 int	cblockC[] = { NBLK4, NBLK16, NBLK64, NBLKBIG };
 int	cblockM[] = { 1000, 1000, 1000, 1000 };
 
