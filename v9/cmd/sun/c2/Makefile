@@ -10,8 +10,10 @@ HLIST = as.h c2.h inst.h oper.h
 OBJ =	error.o inst.o instruction.o label.o main.o scan.o sym.o util.o \
 	branch.o hardexp.o livereg.o regmask.o register.o pseudoop.o \
 	alloc.o operand.o quicken.o stackops.o coalesce.o
-CC=newcc
-COPT=-O
+# Compiler command for the optimizer
+CC ?= cc
+# Optimization level
+COPT ?= -O
 DEFS= -DC2
 POPT= -P1 -p
 LDFLAGS=

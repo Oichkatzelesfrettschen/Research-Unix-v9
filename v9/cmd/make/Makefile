@@ -3,13 +3,15 @@
 
 P = ipr
 T =
-CC = newcc
+# Compiler command for building make
+CC ?= cc
 FILES = Makefile ident.c defs main.c doname.c misc.c files.c dosys.c gram.y
 OBJECTS = ident.o main.o doname.o dosys.o gram.o misc.o files.o
 POBJECTS = Pident.o Pmain.o Pdoname.o Pdosys.o Pgram.o Pmisc.o Pfiles.o
 LIBES= 
 LINT = lint -ps -DASCARCH
-CFLAGS = -O  -DASCARCH -DVERSION8
+# Default compilation flags
+CFLAGS ?= -O -DASCARCH -DVERSION8
 PCFLAGS = -p -g -DASCARCH -DVERSION8
 
 GCOSFILES = defs ident.c main.c doname.c misc.c gram.c gcos.c

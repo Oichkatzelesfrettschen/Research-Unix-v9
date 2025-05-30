@@ -1,4 +1,5 @@
-CC = newcc
+# Compiler command for building emacs
+CC ?= cc
 VFLAGS = -Dv8 -DTERMCAP -DPORTEXT
 BINDIR = /usr/lbin
 LIBDIR = /usr/lib/emacs

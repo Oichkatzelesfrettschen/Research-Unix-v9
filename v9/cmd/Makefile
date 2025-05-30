@@ -1,5 +1,7 @@
-CC=	newcc
-CFLAGS=	-O
+# Compiler command; default to the system C compiler
+CC ?= cc
+# Compiler flags for building utilities
+CFLAGS ?= -O2
 FILES=	ar cat chmod cmp cp date dd df du echo ed \
 	fsck getty grep init kill ln login ls mkdir \
 	mkfs mount mv newgrp nice pr printenv procmount \
@@ -15,127 +17,127 @@ clean:
 	rm -f *.o $(FILES)
 
 ar: ar.o
-	$(CC) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o
 
 cat: cat.o
-	$(CC) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o
 
 chmod: chmod.o
-	$(CC) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o
 
 cmp: cmp.o
-	$(CC) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o
 
 cp: cp.o
-	$(CC) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o
 
 date: date.o
-	$(CC) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o
 
 dd: dd.o
-	$(CC) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o
 
 df: df.o
-	$(CC) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o
 
 du: du.o
-	$(CC) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o
 
 echo: echo.o
-	$(CC) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o
 
 ed: ed.o
-	$(CC) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o
 
 fsck: fsck.o
-	$(CC) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o
 
 getty: getty.o
-	$(CC) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o
 
 grep: grep.o
-	$(CC) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o
 
 init: init.o
-	$(CC) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o
 
 kill: kill.o
-	$(CC) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o
 
 ln: ln.o
-	$(CC) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o
 
 login: login.o
-	$(CC) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o
 
 ls: ls.o
-	$(CC) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o
 
 mkdir: mkdir.o
-	$(CC) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o
 
 mkfs: mkfs.o
-	$(CC) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o
 
 mount: mount.o
-	$(CC) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o
 
 mv: mv.o
-	$(CC) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o
 
 newgrp: newgrp.o
-	$(CC) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o
 
 nice: nice.o
-	$(CC) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o
 
 pr: pr.o
-	$(CC) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o
 
 printenv: printenv.o
-	$(CC) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o
 
 procmount: procmount.o
-	$(CC) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o
 
 pwd: pwd.o
-	$(CC) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o
 
 ranlib: ranlib.o
-	$(CC) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o
 
 rm: rm.o
-	$(CC) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o
 
 rmdir: rmdir.o
-	$(CC) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o
 
 size: size.o
-	$(CC) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o
 
 stty: stty.o
-	$(CC) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o
 
 sync: sync.o
-	$(CC) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o
 
 tar: tar.o
-	$(CC) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o
 
 test: test.o
-	$(CC) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o
 
 time: time.o
-	$(CC) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o
 
 umount: umount.o
-	$(CC) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o
 
 update: update.o
-	$(CC) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o
 
 who: who.o
-	$(CC) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o
 
 write: write.o
-	$(CC) -o $@ $@.o
+	$(CC) $(CFLAGS) -o $@ $@.o

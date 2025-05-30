@@ -1,5 +1,8 @@
-#CC=	newcc
-CFLAGS=	-O
+# Compiler command for Sun-specific library
+CC ?= cc
+AS ?= as
+# Base optimization flags
+CFLAGS ?= -O2
 
 OFILES=	Faddd.o Fadds.o Faintd.o Faints.o Fdtos.o Ffloat.o Ffltd.o \
 	Fflts.o Fmuld.o Fmuls.o Fstod.o fp_globals.o frexp.o ldexp.o \
@@ -12,5 +15,5 @@ install:
 
 .s.o:
 	/lib/cpp $< > $*.i
-	as -20 -o $*.o $*.i
+	$(AS) -o $*.o $*.i
 	rm $*.i
