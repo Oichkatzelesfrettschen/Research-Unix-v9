@@ -14,6 +14,13 @@
 #include "../sundev/xyreg.h"
 
 extern char	msg_nolabel[];
+/*
+ * Magic constants used by the older driver code.  Defining them
+ * symbolically clarifies their purpose.
+ */
+#define XY_ERR_UNDEFINED 0x1F   /* undocumented error code used during probe */
+#define XY_BADCNT       126    /* number of entries in bad block table */
+
 
 struct xyparam {
 	unsigned short	xy_boff;	/* Cyl # starting partition */
@@ -285,7 +292,7 @@ retry:
 			(void) xycmd(XY_RESET, sip, 0, (char *)0, 0);
 		return (-1);
 	}
-	if (xy->xy_iserr && xy->xy_errno != 0x1F) {	/* FIXME constant */
+	if (xy->xy_iserr && xy->xy_errno != XY_ERR_UNDEFINED) {	
 		if (nsect != 1)		/* only try hard on single sectors */
 			return (-1);
 		error = xy->xy_errno;
@@ -316,7 +323,7 @@ xyfwd(xyp, cn, tn, sn)
 
 	if (bt->bt_mbz != 0)	/* not initialized */
 		return (0);
-	for (i=0; i<126; i++)		/* FIXME constant */
+	for (i=0; i<XY_BADCNT; i++)		
 		if (bt->bt_bad[i].bt_cyl == cn &&
 		    bt->bt_bad[i].bt_trksec == (tn<<8)+sn) {
 			return (xyp->xy_badaddr - i - 1);

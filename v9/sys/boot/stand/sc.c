@@ -103,10 +103,6 @@ scopen(sip)
  *
  * Returns -1 for error, otherwise returns the residual count not DMAed
  * (zero for success).
- *
- * FIXME, this must be accessed via a boottab vector,
- * to allow host adap to switch.
- * Must pass cdb, scb in sip somewhere...
  */
 int
 scdoit(cdb, scb, sip)
@@ -248,7 +244,6 @@ sc_putbyte(har, bits, c)
  * If <bits> is wrong, we print a message -- unless <bits> is ICR_STATUS.
  * This hack is because scdoit keeps calling getbyte until it sees a non-
  * status byte; this is not an error in sequence as long as the next byte
- * has MESSAGE_IN tags.  FIXME.
  */
 int
 sc_getbyte(har, bits)

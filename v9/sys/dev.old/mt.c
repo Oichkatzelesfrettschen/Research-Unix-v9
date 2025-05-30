@@ -8,17 +8,9 @@
  *	Most error recovery bug fixes - ggs (ulysses!ggs)
  *
  * OPTIONS:
- *	MTLERRM - Long error message text - twd, Brown University
- *	MTRDREV - `read reverse' error recovery - ggs (ulysses!ggs)
- *
- * TODO:
- *	Add odd byte count kludge from VMS driver (?)
- *	Write dump routine
+ *      MTLERRM - Long error message text - twd, Brown University
+ *      MTRDREV - `read reverse` error recovery - ggs (ulysses!ggs)
  */
-
-#define MTLERRM 0
-#define MTRDREV 0
-
 #include "../h/param.h"
 #include "../h/systm.h"
 #include "../h/buf.h"

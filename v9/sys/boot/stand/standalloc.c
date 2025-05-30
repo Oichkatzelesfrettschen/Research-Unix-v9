@@ -24,9 +24,6 @@
 #include "saio.h"
 
 /*
- * Artifice so standalone code uses same variable names as monitor's
- * for debugging.  FIXME?  Or leave this way?
- */
 struct globram {
 	char *g_nextrawvirt;
 	char *g_nextdmaaddr;
@@ -41,12 +38,7 @@ struct globram {
 struct pgmapent mainmapinit = 
 	{1, PMP_SUP, VPM_MEMORY, 0, 0, 0};
 
-
-/*
- * Say Something Here FIXME
  */
-char *
-resalloc(type, bytes)
 	enum RESOURCES type;
 	register unsigned bytes;
 {

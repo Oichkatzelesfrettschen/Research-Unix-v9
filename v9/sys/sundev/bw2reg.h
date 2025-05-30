@@ -45,7 +45,7 @@ struct	bw2cr {
 	unsigned vc_int_en:1;		/* Interrupt enable */
 	unsigned vc_int:1;		/* Int active - r/o */
 	unsigned vc_b_jumper:1;		/* Config jumper, 0=default */
-					/* FIXME: 1=manufacturing burnin */
+					
 					/* This is a 'temporary' kludge */
 	unsigned vc_a_jumper:1;		/* Config jumper, 0=default */
 	unsigned vc_color_jumper:1;	/* Config jumper, 0=default */

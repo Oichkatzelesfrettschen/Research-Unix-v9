@@ -3,12 +3,6 @@
 #include "tu.h"
 /*
  * TM03/TU?? tape driver
- *
- * TODO:
- *	cleanup messages on errors
- *	test ioctl's
- *	see how many rewind interrups we get if we kick when not at BOT
- *	fixup rle error on block tape code
  */
 #include "../h/param.h"
 #include "../h/systm.h"

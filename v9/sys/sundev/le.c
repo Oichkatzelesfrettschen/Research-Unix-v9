@@ -285,7 +285,7 @@ register struct leu *lu;
 	ib->ib_padr[4] = lu->myetheradr[5];
 	ib->ib_padr[5] = lu->myetheradr[4];
 						
-	/* No multicast filter yet, FIXME MULTICAST, leave zeros. */
+	
 
 	ib->ib_rdrp.drp_laddr = (long)lu->rdrp;
 	ib->ib_rdrp.drp_haddr = (long)lu->rdrp >> 16;

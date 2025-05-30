@@ -314,7 +314,6 @@ lancexmit(es, buf, count)
 #ifdef PROM
 	tbuf = buf;
 #else  PROM
-/* FIXME, constant address masks here! */
 	if ( ((int)buf & 0x0F000000) == 0x0F000000) { /* we can point to it */
 	    tbuf = buf;
 	} else {

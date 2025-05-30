@@ -184,9 +184,6 @@ siopen(sip)
  * Returns -1 for error, otherwise returns the residual count not DMAed
  * (zero for success).
  *
- * FIXME, this must be accessed via a boottab vector,
- * to allow host adap to switch.
- * Must pass cdb, scb in sip somewhere...
  */
 int
 sidoit(cdb, scb, sip)
