@@ -250,3 +250,14 @@ Some known bugs (I'm sure there are more):
 	RM 2B-424
 	600 Mountain Ave
 	Murray Hill, N.J.  07974
+
+FORMATTER USAGE
+---------------
+The repository includes a `.clang-format` file that defines the coding
+style. To format a file in place run:
+
+    clang-format -i path/to/file.c
+
+To see formatting changes without modifying the file use:
+
+    clang-format path/to/file.c | diff -u path/to/file.c -
