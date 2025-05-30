@@ -6,9 +6,6 @@
  *
  * This driver has been modified to work on printers where
  * leaving IENABLE set would cause continuous interrupts.
- *
- * TODO:
- *	Test driver on multiple printers
  */
 
 #include "../h/param.h"

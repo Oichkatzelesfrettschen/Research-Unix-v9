@@ -35,7 +35,7 @@ struct sdparam {
 /*
  * Record an error message from scsi
  */
-#define DEBUG FIXME
+#define DEBUG 0
 
 #if (!defined(SDBOOT)) & !defined(STBOOT) & !defined(DEBUG)
 
@@ -144,16 +144,13 @@ sdopen(sip)
 		extern struct boottab scdriver;
 		extern struct boottab sidriver;
 
-		/* FIXME, find out which scsi interface to use */
 		if (sd_probe(sip)) {
 			sdp->sd_ha_type = 1;
 
-			/* FIXME, must vector thru table */
 			sdp->subsip->si_boottab = &sidriver;	
 		} else {
 			sdp->sd_ha_type = 0;
 
-			/* FIXME, must vector thru table */
 			sdp->subsip->si_boottab = &scdriver;	
 		}
 

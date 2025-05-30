@@ -8,14 +8,6 @@ int tsdebug;
 #endif
 /*
  * TS11 tape driver
- *
- * TODO:
- *	test driver with more than one controller
- *	test reset code
- *	test dump code
- *	test rewinds without hanging in driver
- *	what happens if you offline tape during rewind?
- *	test using file system on tape
  */
 #include "../h/param.h"
 #include "../h/systm.h"

@@ -67,12 +67,19 @@ openi(n,io)
 
 	io->i_offset = 0;
 	io->i_bn = fsbtodb(&io->i_fs, itod(&io->i_fs, n));
-	io->i_cc = io->i_fs.fs_bsize;
-	io->i_ma = io->i_buf;
-	/* FIXME: this call to devread() does not check for errors! */
-	devread(&io->i_si);
-	dp = (struct dinode *)io->i_buf;
-	io->i_ino.i_ic = dp[itoo(&io->i_fs, n)].di_ic;
+       io->i_cc = io->i_fs.fs_bsize;
+       io->i_ma = io->i_buf;
+       /*
+        * Read the inode block from disk and ensure the entire block
+        * was transferred.  Older code ignored the return value which
+        * could leave partially initialized inodes on errors.
+        */
+       if (devread(&io->i_si) != io->i_cc) {
+               printf("openi: I/O error reading inode\n");
+               return;
+       }
+       dp = (struct dinode *)io->i_buf;
+       io->i_ino.i_ic = dp[itoo(&io->i_fs, n)].di_ic;
 }
 
 static ino_t
@@ -285,15 +292,15 @@ lseek(fdesc, addr, ptr)
 	return(0);
 }
 
-/* FIXME: possibly make this static and pass iob, eliminating assorted tests? */
+/*
+ * Extract a single character from an open file descriptor.  The heavy
+ * lifting is handled by iobgetc(), which directly operates on the iob
+ * structure.  This wrapper merely validates the descriptor.
+ */
 getc(fdesc)
-	int	fdesc;
+        int     fdesc;
 {
-	register struct iob *io;
-	register struct fs *fs;
-	register char *p;
-	register int c, off, size, diff;
-	register daddr_t lbn;
+        register struct iob *io;
 
 
 #ifndef BOOTBLOCK
@@ -306,38 +313,50 @@ getc(fdesc)
 #else
 	io = &iob[fdesc -= 3];
 #endif
-	p = io->i_ma;
-	if (io->i_cc <= 0) {
-		if ((io->i_flgs & F_FILE) != 0) {
-			diff = io->i_ino.i_size - io->i_offset;
-			if (diff <= 0)
-				return (-1);
-			fs = &io->i_fs;
-			lbn = lblkno(fs, io->i_offset);
-			io->i_bn = fsbtodb(fs, sbmap(io, lbn));
-			off = blkoff(fs, io->i_offset);
-			size = blksize(fs, &io->i_ino, lbn);
-		} else {
-			io->i_bn = io->i_offset / DEV_BSIZE;
-			off = 0;
-			size = DEV_BSIZE;
-		}
-		io->i_ma = io->i_buf;
-		io->i_cc = size;
-		if (devread(&io->i_si) != io->i_cc)	/* Trap errors */
-			return(-1);
-		if ((io->i_flgs & F_FILE) != 0) {
-			if (io->i_offset - off + size >= io->i_ino.i_size)
-				io->i_cc = diff + off;
-			io->i_cc -= off;
-		}
-		p = &io->i_buf[off];
-	}
-	io->i_cc--;
-	io->i_offset++;
-	c = (unsigned)*p++;
-	io->i_ma = p;
-	return(c);
+       return iobgetc(io);
+}
+
+static int
+iobgetc(io)
+       register struct iob *io;
+{
+       register struct fs *fs;
+       register char *p;
+       register int c, off, size, diff;
+       register daddr_t lbn;
+
+       p = io->i_ma;
+       if (io->i_cc <= 0) {
+               if ((io->i_flgs & F_FILE) != 0) {
+                       diff = io->i_ino.i_size - io->i_offset;
+                       if (diff <= 0)
+                               return (-1);
+                       fs = &io->i_fs;
+                       lbn = lblkno(fs, io->i_offset);
+                       io->i_bn = fsbtodb(fs, sbmap(io, lbn));
+                       off = blkoff(fs, io->i_offset);
+                       size = blksize(fs, &io->i_ino, lbn);
+               } else {
+                       io->i_bn = io->i_offset / DEV_BSIZE;
+                       off = 0;
+                       size = DEV_BSIZE;
+               }
+               io->i_ma = io->i_buf;
+               io->i_cc = size;
+               if (devread(&io->i_si) != io->i_cc)
+                       return (-1);
+               if ((io->i_flgs & F_FILE) != 0) {
+                       if (io->i_offset - off + size >= io->i_ino.i_size)
+                               io->i_cc = diff + off;
+                       io->i_cc -= off;
+               }
+               p = &io->i_buf[off];
+       }
+       io->i_cc--;
+       io->i_offset++;
+       c = (unsigned)*p++;
+       io->i_ma = p;
+       return (c);
 }
 
 

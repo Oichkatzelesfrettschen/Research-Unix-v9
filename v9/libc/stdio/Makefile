@@ -16,7 +16,7 @@ OFILES= cleanup.o clrerr.o data.o doprnt.o doscan.o fdopen.o fgetc.o \
 all: $(OFILES)
 
 install:
-        mv $(OFILES) ../OBJ
+	mv $(OFILES) ../OBJ
 
 .s.o:
-        $(AS) -o $@ $<
+	$(AS) -o $@ $<

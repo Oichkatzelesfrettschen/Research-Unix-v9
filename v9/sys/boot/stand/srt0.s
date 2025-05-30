@@ -29,7 +29,6 @@ _cpudelay:
 
 HIGH = 0x2700
 
-| FIXME!!! These should come from statreg.h or assym.h
 CACR_CLEAR = 0x8
 CACR_ENABLE = 0x1
 

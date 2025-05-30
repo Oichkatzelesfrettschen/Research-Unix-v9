@@ -111,7 +111,6 @@ aropen(sip)
 	sc->sc_cmdok = 0;
 	sc->sc_selecteddev = -1;
 /* When adding new fields to softc, be sure to initialize them here. */
-/* FIXME, should initialize buffer headers here too */
 
 	araddr->arunwedge = 1;		/* Take it out of burst mode wedge */
 	araddr->arburst = 0;
@@ -175,7 +174,6 @@ Dprintf("ar*init Error from command STATUS\n");
 	}
 
 	/*
-	 * FIXME, this is a kludge.  open() won't select the drive unless
 	 * the in-core status claims we are at BOT, since the tape drive
 	 * will reject the command if indeed a tape was in use and is not
 	 * at BOT.  However, tapes at BOT after a Reset do not necessarily
@@ -213,8 +211,6 @@ Dprintf("ar*init Error from command STATUS\n");
 	 *
 	 * Since the select command doesn't work when we aren't at BOT,
 	 * we just have to hope the same drive is still selected as last
-	 * time.  FIXME.  We should record this info in softc and keep it
-	 * up to date.  FIXME: also, I'm not happy about using status.BOT
 	 * here, even tho it should always be up to date. -- JCGnu 22Nov82
 	 */
 	sc->sc_cmdok = 0;
@@ -275,14 +271,12 @@ arclose(sip)
 
 	/*
 	 * Write file mark and rewind, by dropping aronline.
-	 * FIXME.  These 3 commands should be moved into AR_CLOSE
 	 * in order that the user program can continue while the
 	 * tape is rewinding.
 	 */
 	arcmd(sc, AR_CLOSE);	/* Shut down things */
 	araddr->aronline = 1;		/* After rewind, set aronline */
 	/* See comments in open() about aronline and read status cmds */
-	/* FIXME, this might screw low level code if it affects arrdy */
 	arcmd(sc, AR_STATUS);	/* Read block counts */
 	arcmd(sc, AR_DESELECT);	/* Turn LED off */
 	sc->sc_selecteddev = -1;
@@ -392,7 +386,6 @@ arcmd(sc, cmd)
  * we have transferred the last byte of the block; but there will be
  * an interrupt 5.5ms later to tell us it's ok to send the next block.
  * Eventually, we will rewind the tape asynchronously after the file is
- * closed, letting the user go free while it spins.  FIXME: THIS CANNOT
  * BE DONE until we clean up the high level code so it doesn't clobber
  * our variables as it is setting up to call arstart_cmd().
  */
@@ -417,7 +410,6 @@ Dprintf("ar*machine(%x, %x) state %x\n", sc, araddr, sc->sc_state);
 		return (1);
 
 	case CLOSEinit:
-		/* FIXME, this is time dependent and not documented in
 		   the Archive manual */
 		araddr->aronline = 0;		/* Drop online; we're done. */
 		if (araddr->arrdy)
@@ -425,7 +417,6 @@ Dprintf("ar*machine(%x, %x) state %x\n", sc, araddr, sc->sc_state);
 		else
 			goto FinState;	/* Rewinding; wait for interrupt. */
 
-#ifdef FIXME
 	case CLOSEend:
 		/* This is entered from READidle or WRidle. */
 		araddr->aronline = 0;		/* Drop it, causing rewind. */
@@ -656,7 +647,6 @@ Dprintf("ar*machine exiting in state %x\n", sc->sc_state);
 	/* Go to next state on the next leading edge of arrdy. */
 	araddr->arrdyie = 1;	/* Interrupt on arrdy leading edge */
 	araddr->arexcie = 1;	/* Interrupt on arexc too */
-/* FIXME.  Figure out where to set and unset, leave alone otherwise. */
 
 	return (0);
 }

@@ -10,12 +10,6 @@ int	hpbdebug;
 #include "hp.h"
 /*
  * HP disk driver for RP0x+RMxx+ML11
- *
- * TODO:
- *	check RM80 skip sector handling when ECC's occur later
- *	check offset recovery handling
- *	see if DCLR and/or RELEASE set attention status
- *	print bits of mr && mr2 symbolically
  */
 
 #include "../h/param.h"

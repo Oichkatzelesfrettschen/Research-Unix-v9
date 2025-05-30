@@ -134,16 +134,13 @@ stopen(sip)
 		extern struct boottab scdriver;
 		extern struct boottab sidriver;
 
-		/* FIXME, find out which scsi interface to use */
 		if (st_probe(sip)) {
 			stp->st_ha_type = 1;
 
-			/* FIXME, must vector thru table */
 			stp->subsip->si_boottab = &sidriver;
 		} else {
 			stp->st_ha_type = 0;
 
-			/* FIXME, must vector thru table */
 			stp->subsip->si_boottab = &scdriver;
 		}
 	}

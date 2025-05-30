@@ -3,10 +3,6 @@
 #include "up.h"
 /*
  * UNIBUS disk driver with overlapped seeks and ECC recovery.
- *
- * TODO:
- *	Add bad sector forwarding code
- *	Check that offset recovery code works
  */
 
 #include "../h/param.h"

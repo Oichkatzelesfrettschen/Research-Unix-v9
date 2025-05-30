@@ -194,7 +194,6 @@ ieinit(sip)
 		es->es_type = IE_MB;
 		es->es_mie = mie;
 	}
-	/* FIXME, release multibus resources ifdef. */
 	sip->si_devdata = (caddr_t)es;
 	return iereset(es, sip);
 }
