@@ -6,12 +6,12 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #define BLOCK 4096
+/* Buffer used for copying data between files */
 
 char	buf[BLOCK];
 
-main (argc, argv)
-	int argc;
-	char **argv;
+/* main program entry point */
+int main(int argc, char **argv)
 {
 	register int fflg = 0;
 	register int fi, fo;
