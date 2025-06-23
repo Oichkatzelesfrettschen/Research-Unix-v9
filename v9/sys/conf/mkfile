@@ -11,7 +11,7 @@ LD=	ld
 NPROC=	2
 
 COPTS=	${IDENT} -DKERNEL
-CFLAGS=	-O ${COPTS} -fsingle
+CFLAGS=	-std=gnu89 -O ${COPTS} -fsingle
 
 FOBJS=Faddd.o Fadds.o Fdtos.o Ffloat.o Fflts.o Fmuls.o Fstod.o fp_globals.o
 

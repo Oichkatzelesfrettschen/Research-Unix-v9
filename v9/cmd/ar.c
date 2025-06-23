@@ -6,6 +6,7 @@ static	char sccsid[] = "@(#)ar.c 4.1 10/1/80";
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <ar.h>
+#include "../include/ar.h"
 #include <signal.h>
 
 struct	stat	stbuf;
@@ -722,11 +723,11 @@ pmode()
 {
 	register int **mp;
 
-	for (mp = &m[0]; mp < &m[9];)
-		select(*mp++);
+       for (mp = &m[0]; mp < &m[9];)
+               select_pair(*mp++);
 }
 
-select(pairp)
+select_pair(pairp)
 int *pairp;
 {
 	register int n, *ap;

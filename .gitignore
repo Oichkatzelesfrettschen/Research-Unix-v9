@@ -6,3 +6,10 @@
 # Exclude prebuilt utilities
 v9/X11/src/X.V11R1/util/imake/imake
 v9/X11/src/X.V11R1/util/makedepend/makedepend
+cloc.csv
+cscope.out
+lizard.txt
+build.log
+node_modules/
+package-lock.json
+package.json
