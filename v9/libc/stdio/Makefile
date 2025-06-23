@@ -1,7 +1,7 @@
 # Compiler command for building the library
 CC ?= cc
 # Base optimization flags
-CFLAGS ?= -std=gnu89 -O2
+CFLAGS ?= -std=gnu89 -Oz
 # Assembler used for low level routines
 AS ?= as
 

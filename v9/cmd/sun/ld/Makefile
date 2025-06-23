@@ -4,7 +4,7 @@
 # Compiler command used for the loader
 CC ?= cc
 # Flags passed to the compiler
-CFLAGS ?= -O2 -Dsun3
+CFLAGS ?= -Oz -Dsun3
 OBJS    = ld.o incl.o
 PROGRAM = ld
 

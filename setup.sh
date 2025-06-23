@@ -7,9 +7,9 @@ set -e
 # Update package lists
 sudo apt-get update
 
-# Install clang and other build tools
+# Install clang and other build tools without hardcoding a version
 sudo apt-get install -y \
-  clang-14 \
+  clang \
   make \
   cscope \
   cloc \
@@ -17,8 +17,10 @@ sudo apt-get install -y \
   python3-pip
 
 # Configure clang as the default C/C++ compiler via update-alternatives
-sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-14 100
-sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-14 100
+CLANG_BIN=$(command -v clang)
+CLANGPP_BIN=$(command -v clang++)
+sudo update-alternatives --install /usr/bin/clang clang "$CLANG_BIN" 100
+sudo update-alternatives --install /usr/bin/clang++ clang++ "$CLANGPP_BIN" 100
 
 # Install Python utilities
 sudo pip install --break-system-packages lizard tree_sitter

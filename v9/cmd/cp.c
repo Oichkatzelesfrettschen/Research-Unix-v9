@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <sys/param.h>
 #define	BLOCKSIZE	BUFSIZE
 struct	stat	stbuf1, stbuf2;
 char	iobuf[BLOCKSIZE];
@@ -94,7 +95,7 @@ char *from, *to;
 		return(1);
 	}
 	zsize = 0;
-	while(n = read(fold, iobuf, bsize)) {
+        while((n = read(fold, iobuf, bsize)) > 0) {
 		if (n < 0) {
 			wrcp();
 			perror(from);
@@ -102,7 +103,8 @@ char *from, *to;
 			close(fnew);
 			return(1);
 		} else
-			if(zflag && (n == bsize) && (memcmp(iobuf, zero, bsize) == 0)){
+                       if (zflag && (n == bsize) &&
+                           (memcmp(iobuf, zero, (size_t)bsize) == 0)) {
 				if (lseek(fnew, (long)bsize, 1) < 0) {
 					wrcp();
 					perror(to);

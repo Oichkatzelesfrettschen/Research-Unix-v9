@@ -7,6 +7,12 @@ static char *sccsid = "@(#)chmod.c	4.1 (Berkeley) 10/1/80";
 #include <sys/types.h>
 #include <sys/stat.h>
 
+#ifndef S_ICCTYP
+#define S_ICCTYP 0007000
+#define S_ISYNC  0001000
+#define S_IEXCL  0003000
+#endif
+
 #define	USER	04700	/* user's bits */
 #define	GROUP	02070	/* group's bits */
 #define	OTHER	00007	/* other's bits */
@@ -58,7 +64,7 @@ unsigned nm;
 {
 	register o, m, b;
 
-	m = abs();
+        m = abs_octal();
 	if (!*ms)
 		return(m);
 	do {
@@ -88,7 +94,7 @@ unsigned nm;
 	return(nm);
 }
 
-abs()
+abs_octal()
 {
 	register c, i;
 
