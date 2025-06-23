@@ -5,8 +5,8 @@ static	char sccsid[] = "@(#)ar.c 4.1 10/1/80";
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <ar.h>
 #include "../include/ar.h"
+#include <string.h>
 #include <signal.h>
 
 struct	stat	stbuf;
@@ -31,13 +31,13 @@ char	*opt	=	{ "uvnbailo" };
 int	signum[] = {SIGHUP, SIGINT, SIGQUIT, 0};
 int	sigdone();
 long	lseek();
-int	rcmd();
-int	dcmd();
-int	xcmd();
-int	tcmd();
-int	pcmd();
-int	mcmd();
-int	qcmd();
+void	rcmd();
+void	dcmd();
+void	xcmd();
+void	tcmd();
+void	pcmd();
+void	mcmd();
+void	qcmd();
 int	(*comfun)();
 char	flg[26];
 char	**namv;
@@ -63,6 +63,9 @@ char	buf[BUFSIZ];
 char	*trim();
 char	*mktemp();
 char	*ctime();
+void bamatch(void);
+void phserr(void);
+void mesg(char);
 
 main(argc, argv)
 char *argv[];
@@ -162,7 +165,7 @@ int (*fun)();
 	comfun = fun;
 }
 
-rcmd()
+void rcmd()
 {
 	register f;
 
@@ -194,7 +197,7 @@ rcmd()
 	cleanup();
 }
 
-dcmd()
+void dcmd()
 {
 
 	init();
@@ -212,7 +215,7 @@ dcmd()
 	install();
 }
 
-xcmd()
+void xcmd()
 {
 	register f;
 
@@ -244,7 +247,7 @@ xcmd()
 	}
 }
 
-pcmd()
+void pcmd()
 {
 
 	if(getaf())
@@ -262,7 +265,7 @@ pcmd()
 	}
 }
 
-mcmd()
+void mcmd()
 {
 
 	init();
@@ -288,7 +291,7 @@ mcmd()
 	install();
 }
 
-tcmd()
+void tcmd()
 {
 
 	if(getaf())
@@ -303,7 +306,7 @@ tcmd()
 	}
 }
 
-qcmd()
+void qcmd()
 {
 	register i, f;
 
@@ -619,7 +622,7 @@ match()
 	return(0);
 }
 
-bamatch()
+void bamatch(void)
 {
 	register f;
 
@@ -646,13 +649,14 @@ bamatch()
 	}
 }
 
-phserr()
+void phserr(void)
 {
 
 	fprintf(stderr, "ar: phase error on %s\n", file);
 }
 
-mesg(c)
+void mesg(c)
+char c;
 {
 
 	if(flg['v'-'a'])

@@ -1,7 +1,7 @@
 # Root build rules for Research UNIX V9
 # Set default tools so the tree can be built with a modern toolchain
 CC ?= cc
-CFLAGS ?= -std=gnu89 -O2
+CFLAGS ?= -std=gnu89 -Oz
 AS ?= as
 
 .PHONY: all cmd libc kernel clean

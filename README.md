@@ -6,8 +6,9 @@ and kernel.
 
 ## Prerequisites
 
-Run `setup.sh` to install development dependencies. It installs Clang 14,
-Tree-sitter tooling, cscope, cloc and Python utilities used for code analysis.
+Run `setup.sh` to install development dependencies. It installs Clang and
+additional utilities such as Tree-sitter tooling, cscope, cloc and the Python
+packages used for code analysis.
 
 ```sh
 ./setup.sh
@@ -16,10 +17,23 @@ Tree-sitter tooling, cscope, cloc and Python utilities used for code analysis.
 ## Building
 
 Use the top-level `Makefile` to build all components. The default compiler is
-`clang-14` but can be overridden via the `CC` environment variable.
+`cc` (typically `clang` after running `setup.sh`) but can be overridden via the
+`CC` environment variable. All makefiles default to the `-Oz` optimization flag
+which reduces binary size. Adjust `CFLAGS` for different trade-offs.
 
 ```sh
 make
+```
+
+### Manual compilation example
+
+To experiment with individual files outside the build system you can invoke
+Clang directly with the same flags used by the makefiles:
+
+```sh
+clang -Oz -Iv9/include \
+  -Wno-implicit-int -Wno-implicit-function-declaration \
+  -c v9/cmd/cp.c
 ```
 
 ## Code Analysis

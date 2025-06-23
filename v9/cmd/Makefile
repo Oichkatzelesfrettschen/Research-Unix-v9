@@ -1,7 +1,7 @@
 # Compiler command; default to the system C compiler
 CC ?= cc
-# Compiler flags for building utilities
-CFLAGS ?= -O2
+# Compiler flags for building utilities (size optimized)
+CFLAGS ?= -Oz
 FILES=	ar cat chmod cmp cp date dd df du echo ed \
 	fsck getty grep init kill ln login ls mkdir \
 	mkfs mount mv newgrp nice pr printenv procmount \
