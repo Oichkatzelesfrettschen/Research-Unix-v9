@@ -1,0 +1,38 @@
+.
+├── BUILDING.md
+├── C23_candidates.md
+├── COPYING.pdf
+├── Makefile
+├── README.md
+├── analyze.sh
+├── license_audit_summary.md
+├── license_checker.json
+├── licensecheck.log
+├── node_modules
+│   ├── node-addon-api
+│   ├── node-gyp-build
+│   ├── tree-sitter-c
+│   └── tree-sitter-cli
+├── npm_install.log
+├── package-lock.json
+├── package.json
+├── reuse.log
+├── scancode.log
+├── scancode_partial.log
+├── scancode_partial.spdx
+├── setup.sh
+├── tree.log
+└── v9
+    ├── README
+    ├── X11
+    ├── cmd
+    ├── include
+    ├── ipc
+    ├── jerq
+    ├── jtools
+    ├── libc
+    ├── libtermlib
+    ├── netb
+    └── sys
+
+17 directories, 19 files
