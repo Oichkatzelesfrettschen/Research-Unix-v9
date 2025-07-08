@@ -1,0 +1,33 @@
+{
+  "node-addon-api@8.4.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/nodejs/node-addon-api",
+    "path": "/workspace/Research-Unix-v9/node_modules/node-addon-api",
+    "licenseFile": "/workspace/Research-Unix-v9/node_modules/node-addon-api/LICENSE.md"
+  },
+  "node-gyp-build@4.8.4": {
+    "licenses": "MIT",
+    "repository": "https://github.com/prebuild/node-gyp-build",
+    "publisher": "Mathias Buus",
+    "url": "@mafintosh",
+    "path": "/workspace/Research-Unix-v9/node_modules/node-gyp-build",
+    "licenseFile": "/workspace/Research-Unix-v9/node_modules/node-gyp-build/LICENSE"
+  },
+  "tree-sitter-c@0.24.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/tree-sitter/tree-sitter-c",
+    "publisher": "Max Brunsfeld",
+    "email": "maxbrunsfeld@gmail.com",
+    "path": "/workspace/Research-Unix-v9/node_modules/tree-sitter-c",
+    "licenseFile": "/workspace/Research-Unix-v9/node_modules/tree-sitter-c/LICENSE"
+  },
+  "tree-sitter-cli@0.25.6": {
+    "licenses": "MIT",
+    "repository": "https://github.com/tree-sitter/tree-sitter",
+    "publisher": "Max Brunsfeld",
+    "email": "maxbrunsfeld@gmail.com",
+    "path": "/workspace/Research-Unix-v9/node_modules/tree-sitter-cli",
+    "licenseFile": "/workspace/Research-Unix-v9/node_modules/tree-sitter-cli/LICENSE"
+  }
+}
+
